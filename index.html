@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Викторина (Smart Quiz)</h1>
+        
+        <div class="admin-section">
+            <h2>Добавить вопрос</h2>
+            <input type="text" id="questionInput" placeholder="Введите вопрос...">
+            <input type="text" id="answerInput" placeholder="Введите правильный ответ...">
+            <button onclick="addQuestion()">Добавить вопрос</button>
+        </div>
+
+        <div class="quiz-section">
+            <h2>Прохождение викторины</h2>
+            <button onclick="startQuiz()">Начать викторину</button>
+            <div id="quizArea" style="display:none;">
+                <h3 id="currentQuestion"></h3>
+                <input type="text" id="userAnswer" placeholder="Ваш ответ...">
+                <button onclick="checkAnswer()">Ответить</button>
+            </div>
+            <p id="resultMessage"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
