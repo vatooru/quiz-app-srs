@@ -1,1 +1,16 @@
-
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+input { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+button { padding: 8px 16px; background: #007acc; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 5px; }
+.admin-section, .quiz-section { margin-bottom: 20px; }
