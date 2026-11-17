@@ -1,6 +1,6 @@
 INSERT INTO Users (username, email) VALUES 
-('votooru', 'votooru@example.com'), 
-('test_user', 'test@example.com');
+('vatooru', 'vatooru@gmail.com'), 
+('test_user', 'test@gmail.com');
 
 INSERT INTO Categories (name, description) VALUES 
 ('История', 'Вопросы про исторические события'),
