@@ -19,13 +19,16 @@
 
         <div class="quiz-section">
             <h2>Прохождение викторины</h2>
-            <button onclick="startQuiz()">Начать викторину</button>
-            <div id="quizArea" style="display:none;">
+            <button id="startBtn" onclick="startQuiz()">Начать викторину</button>
+            
+            <div id="quizArea" style="display:none; margin-top: 15px;">
                 <h3 id="currentQuestion"></h3>
                 <input type="text" id="userAnswer" placeholder="Ваш ответ...">
-                <button onclick="checkAnswer()">Ответить</button>
+                <button id="submitAnswerBtn" onclick="checkAnswer()">Ответить</button>
             </div>
-            <p id="resultMessage"></p>
+            
+            <p id="resultMessage" style="font-weight: bold; margin-top: 10px;"></p>
+            <p id="finalScore" style="font-weight: bold; color: #007acc; font-size: 1.2em; margin-top: 10px;"></p>
         </div>
     </div>
     <script src="script.js"></script>
