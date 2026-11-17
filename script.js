@@ -38,3 +38,18 @@ function showQuestion() {
         document.querySelector('button[onclick="checkAnswer()"]').style.display = 'none';
     }
 }
+function checkAnswer() {
+    const userAnswer = document.getElementById('userAnswer').value.trim();
+    const correctAnswer = questions[currentQuestionIndex].answer;
+
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        document.getElementById('resultMessage').style.color = 'green';
+        document.getElementById('resultMessage').innerText = '✅ Правильно!';
+    } else {
+        document.getElementById('resultMessage').style.color = 'red';
+        document.getElementById('resultMessage').innerText = `❌ Неправильно. Правильный ответ: ${correctAnswer}`;
+    }
+
+    currentQuestionIndex++;
+    setTimeout(showQuestion, 2000); 
+}
