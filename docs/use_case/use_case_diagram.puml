@@ -1,1 +1,31 @@
+@startuml
+left to right direction
+actor "Пользователь (Игрок)" as Player
+actor "Администратор" as Admin
 
+rectangle "Приложение Викторина (Smart Quiz)" {
+  usecase "Пройти викторину" as TakeQuiz
+  usecase "Ответить на вопрос" as AnswerQuestion
+  usecase "Просмотреть результаты" as ViewResults
+  usecase "Добавить вопрос" as AddQuestion
+  usecase "Редактировать вопрос" as EditQuestion
+  usecase "Удалить вопрос" as DeleteQuestion
+  usecase "Просмотреть статистику" as ViewStats
+  usecase "Проверка ответов (Валидация)" as ValidateAnswer
+}
+
+' Связи актеров
+Player -- TakeQuiz
+Player -- ViewResults
+Admin -- AddQuestion
+Admin -- EditQuestion
+Admin -- DeleteQuestion
+Admin -- ViewStats
+
+' Связи Include (Обязательные)
+TakeQuiz .> AnswerQuestion : include
+AnswerQuestion .> ValidateAnswer : include
+
+' Связи Extend (Опциональные)
+ViewResults <.. ViewStats : extend
+@enduml
