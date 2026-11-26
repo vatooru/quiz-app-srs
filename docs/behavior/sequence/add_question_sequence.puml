@@ -4,7 +4,6 @@ participant "Интерфейс" as UI
 participant "Контроллер" as Controller
 participant "Сервис вопросов" as QuestionService
 participant "База данных" as DB
-
 Admin -> UI: Заполняет форму вопроса и ответы
 activate UI
 UI -> Controller: POST /api/questions\n(question_text, answers[], category_id)
