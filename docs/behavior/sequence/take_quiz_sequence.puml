@@ -1,0 +1,31 @@
+@startuml
+actor "Игрок" as User
+participant "Интерфейс" as UI
+participant "Контроллер" as Controller
+participant "Сервис викторины" as QuizService
+participant "База данных" as DB
+
+User -> UI: Вводит ответ на вопрос
+activate UI
+UI -> Controller: POST /api/quiz/answer\n(question_id, user_answer)
+activate Controller
+Controller -> QuizService: checkAnswer(question_id, user_answer)
+activate QuizService
+QuizService -> DB: SELECT is_correct FROM Answers\nWHERE question_id = ? AND answer_text = ?
+activate DB
+DB --> QuizService: true / false
+deactivate DB
+
+alt Ответ верный
+    QuizService --> Controller: Success("Правильно")
+    Controller --> UI: 200 OK
+    UI -> User: Показать "✅ Правильно!" и начислить балл
+else Ответ неверный
+    QuizService --> Controller: Error("Неправильно")
+    Controller --> UI: 200 OK
+    UI -> User: Показать "❌ Неправильно!"
+end
+deactivate QuizService
+deactivate Controller
+deactivate UI
+@enduml
