@@ -14,7 +14,7 @@ rectangle "Приложение Викторина (Smart Quiz)" {
   usecase "Проверка ответов (Валидация)" as ValidateAnswer
 }
 
-' Связи актеров
+
 Player -- TakeQuiz
 Player -- ViewResults
 Admin -- AddQuestion
@@ -22,10 +22,10 @@ Admin -- EditQuestion
 Admin -- DeleteQuestion
 Admin -- ViewStats
 
-' Связи Include (Обязательные)
+
 TakeQuiz .> AnswerQuestion : include
 AnswerQuestion .> ValidateAnswer : include
 
-' Связи Extend (Опциональные)
+
 ViewResults <.. ViewStats : extend
 @enduml
