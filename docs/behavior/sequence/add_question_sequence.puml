@@ -1,0 +1,31 @@
+@startuml
+actor "Администратор" as Admin
+participant "Интерфейс" as UI
+participant "Контроллер" as Controller
+participant "Сервис вопросов" as QuestionService
+participant "База данных" as DB
+Admin -> UI: Заполняет форму вопроса и ответы
+activate UI
+UI -> Controller: POST /api/questions\n(question_text, answers[], category_id)
+activate Controller
+Controller -> QuestionService: createQuestion(questionData)
+activate QuestionService
+QuestionService -> QuestionService: validateData()
+
+alt Данные валидны
+    QuestionService -> DB: INSERT INTO Questions (...)
+    activate DB
+    DB --> QuestionService: question_id
+    deactivate DB
+    QuestionService --> Controller: SuccessResponse(question_id)
+    Controller --> UI: 201 Created
+    UI -> Admin: Показать уведомление "Вопрос добавлен"
+else Ошибка валидации
+    QuestionService --> Controller: ErrorResponse("Нет правильного ответа")
+    Controller --> UI: 400 Bad Request
+    UI -> Admin: Показать ошибку
+end
+deactivate QuestionService
+deactivate Controller
+deactivate UI
+@enduml

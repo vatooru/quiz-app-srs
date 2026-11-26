@@ -1,0 +1,26 @@
+@startuml
+actor "Игрок" as User
+participant "Интерфейс" as UI
+participant "Контроллер" as Controller
+participant "Сервис результатов" as ResultService
+participant "База данных" as DB
+
+User -> UI: Нажимает "Завершить викторину"
+activate UI
+UI -> Controller: GET /api/results/final?quiz_id={id}
+activate Controller
+Controller -> ResultService: calculateFinalScore(quiz_id)
+activate ResultService
+ResultService -> DB: SELECT COUNT(*) FROM Quiz_Results\nWHERE quiz_id = ? AND is_correct = 1
+activate DB
+DB --> ResultService: score
+deactivate DB
+ResultService --> Controller: ResultData(score, total_questions)
+deactivate ResultService
+Controller --> UI: 200 OK {score, total}
+deactivate Controller
+UI -> UI: Сгенерировать экран с результатами
+UI -> User: Показать "Ваш результат: X из Y"
+deactivate UI
+@enduml
+
